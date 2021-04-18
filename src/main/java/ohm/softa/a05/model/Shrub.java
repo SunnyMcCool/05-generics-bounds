@@ -1,18 +1,19 @@
-package ohm.softa.a05.collections;
+package ohm.softa.a05.model;
 
 public class Shrub extends Plant{
 
     PlantColor ShrubColor;
 
-    public Shrub(double height, String family, String name, PlantColor FlowerColor) {
+    public Shrub(double height, String family, String name) {
         super(height, family, name);
         this.ShrubColor = PlantColor.GREEN;
     }
 
     @Override
-    public String ToString() {
-        return "shrub power";
+    public PlantColor getColor() {
+        return ShrubColor;
     }
+
 
     @Override
     public int compareTo(double height) {

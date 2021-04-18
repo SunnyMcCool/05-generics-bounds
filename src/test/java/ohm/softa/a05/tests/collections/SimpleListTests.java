@@ -1,12 +1,9 @@
 package ohm.softa.a05.tests.collections;
 
-import ohm.softa.a05.collections.PlantBed;
+import ohm.softa.a05.model.*;
 import ohm.softa.a05.collections.SimpleFilter;
 import ohm.softa.a05.collections.SimpleList;
 import ohm.softa.a05.collections.SimpleListImpl;
-import ohm.softa.a05.collections.Flower;
-import ohm.softa.a05.collections.PlantColor;
-import ohm.softa.a05.collections.Shrub;
 import ohm.softa.a05.tests.models.Person;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,8 +38,8 @@ class SimpleListTests {
 	@Test
 	void testFlower() throws Exception {
 		logger.info("testing flowers");
-		Flower f1 = new Flower(2.0, "Wiesenblume", "Loewenzahn", PlantColor.BLUE);
-		Flower f2 = new Flower(3.0, "Wiesenblume", "Loewenzahn", PlantColor.BLUE);
+		Flower f1 = new Flower(6.0, "Wiesenblume", "Loewenzahn", PlantColor.YELLOW);
+		Flower f2 = new Flower(3.0, "Rose", "Pfingstrose", PlantColor.RED);
 
 		f1.compareTo(f2);
 		f1.toString();
@@ -56,8 +53,8 @@ class SimpleListTests {
 	@Test
 	void testShrub(){
 		logger.info("testing shrubs");
-		Shrub s1 = new Shrub(4.0, "Unterholz", "Vogelbeerbaum",PlantColor.GREEN);
-		Shrub s2 = new Shrub(5.0, "Busch", "Heidelbeerbusch", PlantColor.RED);
+		Shrub s1 = new Shrub(4.0, "Unterholz", "Vogelbeerbaum");
+		Shrub s2 = new Shrub(5.0, "Busch", "Heidelbeerbusch");
 
 		s1.compareTo(s2);
 		s1.toString();
@@ -71,9 +68,9 @@ class SimpleListTests {
 	@Test
 	void testPlantBed(){
 		logger.info("Testing PlantBed");
-		PlantBed<Integer> pb = new PlantBed<>();
+		PlantBed<Plant> pb = new PlantBed<>();
 
-		pb.add(1);
+		pb.add(new Flower(4.0, "Tulpe", "Gelbtulpe", PlantColor.YELLOW));
 		pb.size();
 
 		pb.getPlantsByColor(PlantColor.BLUE);

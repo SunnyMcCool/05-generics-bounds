@@ -1,4 +1,4 @@
-package ohm.softa.a05.collections;
+package ohm.softa.a05.model;
 
 public enum PlantColor {
         GREEN, YELLOW, RED, BLUE, ORANGE
