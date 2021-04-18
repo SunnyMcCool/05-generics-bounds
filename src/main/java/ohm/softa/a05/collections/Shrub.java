@@ -1,4 +1,4 @@
-package ohm.softa.a05.model;
+package ohm.softa.a05.collections;
 
 public class Shrub extends Plant{
 

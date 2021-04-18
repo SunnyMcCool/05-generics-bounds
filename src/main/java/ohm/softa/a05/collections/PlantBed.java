@@ -1,7 +1,5 @@
 package ohm.softa.a05.collections;
 
-import ohm.softa.a05.model.PlantColor;
-
 import java.util.Iterator;
 
 public class PlantBed<T> implements SimpleList<T>{
