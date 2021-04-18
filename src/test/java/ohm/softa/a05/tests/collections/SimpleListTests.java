@@ -1,8 +1,12 @@
 package ohm.softa.a05.tests.collections;
 
+import ohm.softa.a05.collections.PlantBed;
 import ohm.softa.a05.collections.SimpleFilter;
 import ohm.softa.a05.collections.SimpleList;
 import ohm.softa.a05.collections.SimpleListImpl;
+import ohm.softa.a05.model.Flower;
+import ohm.softa.a05.model.PlantColor;
+import ohm.softa.a05.model.Shrub;
 import ohm.softa.a05.tests.models.Person;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +36,47 @@ class SimpleListTests {
 		testList.add(3);
 		testList.add(4);
 		testList.add(5);
+	}
+
+	@Test
+	void testFlower() throws Exception {
+		logger.info("testing flowers");
+		Flower f1 = new Flower(2.0, "Wiesenblume", "Loewenzahn", PlantColor.BLUE);
+		Flower f2 = new Flower(3.0, "Wiesenblume", "Loewenzahn", PlantColor.BLUE);
+
+		f1.compareTo(f2);
+		f1.toString();
+		f1.getFamily();
+		f1.getHeight();
+		f1.getName();
+		f1.equals(f2);
+		f1.hashCode();
+	}
+
+	@Test
+	void testShrub(){
+		logger.info("testing shrubs");
+		Shrub s1 = new Shrub(4.0, "Unterholz", "Vogelbeerbaum",PlantColor.GREEN);
+		Shrub s2 = new Shrub(5.0, "Busch", "Heidelbeerbusch", PlantColor.RED);
+
+		s1.compareTo(s2);
+		s1.toString();
+		s1.getFamily();
+		s1.getHeight();
+		s1.getName();
+		s1.equals(s2);
+		s1.hashCode();
+	}
+
+	@Test
+	void testPlantBed(){
+		logger.info("Testing PlantBed");
+		PlantBed<Integer> pb = new PlantBed<>();
+
+		pb.add(1);
+		pb.size();
+
+		pb.getPlantsByColor(PlantColor.BLUE);
 	}
 
 	@Test
