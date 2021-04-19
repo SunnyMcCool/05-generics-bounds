@@ -13,10 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * @author Peter Kurfer
- * Created on 11/2/17.
- */
 class FlowerTest {
 
     @Test
@@ -54,32 +50,34 @@ class FlowerTest {
     @Test
     void testGetCorrectName() {
         Flower f = new Flower(0.5, "Abracadabra", "Zauberblume", PlantColor.RED);
-        assertEquals("Abracadabra", f.getName());
+        assertEquals("Zauberblume", f.getName());
     }
 
     @Test
     void testGetCorrectFamily() {
         Flower f = new Flower(0.5, "Abracadabra", "Zauberblume", PlantColor.RED);
-        assertEquals("Rosa", f.getFamily());
+        assertEquals("Abracadabra", f.getFamily());
     }
 
     @Test
     void testSortFlowers() {
-        List<Plant> flowers = new LinkedList<>();
+        List<Plant> flowerList = new LinkedList<>();
 
-        flowers.add(new Shrub(3.5, "Buxus sempervirens", "Buxus"));
-        flowers.add(new Flower(1.0, "Abracadabra", "Zauberblume", PlantColor.RED));
-        flowers.add(new Shrub(5.5, "Buxus sempervirens", "Buxus"));
-        flowers.add(new Flower(0.5, "Abracadabra", "Zauberblume", PlantColor.RED));
-        flowers.add(new Shrub(1.5, "Buxus sempervirens", "Buxus"));
-        flowers.add(new Flower(0.75, "Abracadabra", "Zauberblume", PlantColor.RED));
-        flowers.add(new Shrub(4.5, "Buxus sempervirens", "Buxus"));
-        flowers.add(new Flower(2.5, "Abracadabra", "Zauberblume", PlantColor.RED));
+        flowerList.add(new Shrub(3.5, "Buxus sempervirens", "Buxus"));
+        flowerList.add(new Flower(1.0, "Abracadabra", "Zauberblume", PlantColor.RED));
+        flowerList.add(new Shrub(5.5, "Buxus sempervirens", "Buxus"));
+        flowerList.add(new Flower(0.5, "Abracadabra", "Zauberblume", PlantColor.RED));
+        flowerList.add(new Shrub(1.5, "Buxus sempervirens", "Buxus"));
+        flowerList.add(new Flower(0.75, "Abracadabra", "Zauberblume", PlantColor.RED));
+        flowerList.add(new Shrub(4.5, "Buxus sempervirens", "Buxus"));
+        flowerList.add(new Flower(2.5, "Abracadabra", "Zauberblume", PlantColor.RED));
 
-        flowers.sort(Plant::compareTo);
+        // Liste sortieren nach Höhe
+        flowerList.sort(Plant::compareTo);
 
+        // Liste sortieren nach Höhe
         double lastHeight = 0.0;
-        for(Plant f : flowers){
+        for(Plant f : flowerList){
             assertTrue(f.getHeight() > lastHeight);
             lastHeight = f.getHeight();
         }

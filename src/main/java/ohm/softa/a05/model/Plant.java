@@ -1,11 +1,11 @@
 package ohm.softa.a05.model;
 
 
-import ohm.softa.a05.collections.Comparable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+// Soll generisches Comparable implementieren
 public abstract class Plant implements Comparable<Plant> {
 
     private final double height;
@@ -15,6 +15,7 @@ public abstract class Plant implements Comparable<Plant> {
     protected Plant(double height, String family, String name)
     {
         // Exceptions aus Musterlösung
+        // Wenn ein Argument null sein sollte
         if(family == null || family.length() == 0) throw new IllegalArgumentException("Specify a family");
         if(name == null || name.length() == 0) throw new IllegalArgumentException("Specify a name");
         if(height <= 0.0) throw new IllegalArgumentException("Height may not be less or equal zero");
@@ -36,19 +37,25 @@ public abstract class Plant implements Comparable<Plant> {
         return name;
     }
 
+    // Abstract, da erst definierbar, wenn eine Flower oder Shrub erstellt wurde
     public abstract PlantColor getColor();
 
 
     // aus Musterlösung
-    // was passiert hier?
+    // return true, wenn Objekte beide gleich
+    // false, wenn nicht
     @Override
     public boolean equals(Object o) {
+        // Wenn Objekte gleich
         if (this == o) return true;
 
+        // o ist keine Instanz von Pflanze
         if (!(o instanceof Plant)) return false;
 
+        // o wird gecastet zu Pflanze
         Plant plant = (Plant) o;
 
+        // EqualsBuilder vergleicht alle Eigenschaften miteinander nach Gleichheit
         return new EqualsBuilder()
                 .append(getHeight(), plant.getHeight())
                 .append(getFamily(), plant.getFamily())
@@ -57,8 +64,10 @@ public abstract class Plant implements Comparable<Plant> {
                 .isEquals();
     }
 
+    // integraler Wert, der Objekte in Hash-Container ablegt
     @Override
     public int hashCode() {
+        // 17*37 + 45 = 674
         return new HashCodeBuilder(17, 37)
                 .append(getFamily())
                 .append(getName())
@@ -67,6 +76,7 @@ public abstract class Plant implements Comparable<Plant> {
                 .toHashCode();
     }
 
+    // Gebe alle Eigenschaften als String aus
     @Override
     public String toString() {
         return new ToStringBuilder(this)
@@ -77,8 +87,14 @@ public abstract class Plant implements Comparable<Plant> {
                 .toString();
     }
 
+
+    // die compareTo-Methode vergleich zwei Pflanzenhöhen miteinander
+    // Gleich groß = 0
+    // a kleiner b = -1
+    // a größer b = 1
     @Override
     public int compareTo(Plant plant) {
+
         return Double.compare(this.height, plant.height);
     }
 

@@ -1,16 +1,16 @@
 package ohm.softa.a05.tests.model;
 
+import ohm.softa.a05.model.Flower;
+import ohm.softa.a05.model.Plant;
 import ohm.softa.a05.model.PlantColor;
 import ohm.softa.a05.model.Shrub;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.LinkedList;
+import java.util.List;
 
-/**
- * @author Peter Kurfer
- * Created on 11/2/17.
- */
+import static org.junit.jupiter.api.Assertions.*;
+
 class ShrubTests {
 
     @Test
@@ -42,12 +42,33 @@ class ShrubTests {
     @Test
     void testGetCorrectName() {
         Shrub s = new Shrub(1.5, "Buxus sempervirens", "Buxus");
-        assertEquals("Buxus sempervirens", s.getName());
+        assertEquals("Buxus", s.getName());
     }
 
     @Test
     void testGetCorrectFamily() {
         Shrub s = new Shrub(1.5, "Buxus sempervirens", "Buxus");
-        assertEquals("Buxus", s.getFamily());
+        assertEquals("Buxus sempervirens", s.getFamily());
+    }
+
+    @Test
+    void testSortShrub() {
+        List<Plant> shrubList = new LinkedList<>();
+
+        shrubList.add(new Shrub(3.5, "Buxus sempervirens", "Buxus"));
+        shrubList.add(new Shrub(5.5, "Buxus sempervirens", "Buxus"));
+        shrubList.add(new Shrub(1.5, "Buxus sempervirens", "Buxus"));
+
+        // Liste sortieren nach Höhe
+        shrubList.sort(Plant::compareTo);
+
+        // Liste sortieren nach Höhe
+        double lastHeight = 0.0;
+        for(Plant s : shrubList){
+            assertTrue(s.getHeight() > lastHeight);
+            lastHeight = s.getHeight();
+        }
+
+        System.out.println(shrubList);
     }
 }

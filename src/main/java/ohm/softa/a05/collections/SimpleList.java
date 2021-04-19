@@ -1,5 +1,6 @@
 package ohm.softa.a05.collections;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.function.Function;
 
 /**
@@ -66,11 +67,13 @@ public interface SimpleList<T> extends Iterable<T> {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
+	// <? super T> = erlaubt alle Elternklasse von T
+	// <? extends R> = erlaubt alle Kindsklassen von R
 	default <R> SimpleList<R> map(Function<? super T, ? extends R> transform) {
 		SimpleList<R> result;
 		try {
-			result = (SimpleList<R>) getClass().newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
+			result = (SimpleList<R>) getClass().getDeclaredConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
 			result = new SimpleListImpl<>();
 		}
 		for (T t : this) {

@@ -9,22 +9,34 @@ import ohm.softa.a05.model.PlantColor;
 import java.util.HashMap;
 import java.util.Map;
 
+ // PECS (Producer Extends, Consumer Super)
+ // Metal und Pandabären
+
+// Warum abstrakt und privat?
 public abstract class PlantBedUtility implements SimpleList {
 
     private PlantBedUtility(){
 
     }
 
-    public static <T extends Plant> Map<PlantColor, SimpleList<T>> splitBedByColor(PlantBed<T> plantBed) {
+    // <T extends Plant> = erlaubt alle Kindsklassen von Plant
+    public static <T extends Plant>
+        // In Map wird PlantColor und SimpleList<T> geworfen
+        Map<PlantColor, SimpleList<T>>
+            // Ein Beet wird reingegeben
+            splitBedByColor(PlantBed<T> plantBed) {
+
+        // In Map wird PlantColor und SimpleList<T> geworfen
+        // neue Hashmap generiert
         Map<PlantColor, SimpleList<T>> result = new HashMap<>();
 
-        for (T plant : plantBed.getPlants()) {
-            /* if the result does not contain the color of the plant
-             * insert the color and a new empty list */
+        for (T plant : plantBed.getPlantList()) {
+            // Wenn Ergebnis nicht die Farbe der Pflanze erhält
+            // gebe die Farbe in eine neue leere Liste
             if (!result.containsKey(plant.getColor())) {
                 result.put(plant.getColor(), new SimpleListImpl<>());
             }
-            /* get the corresponding list and add the current plant */
+            // Nehme die entsprechende Liste und füge aktuelle Pflanze hinzu
             result.get(plant.getColor()).add(plant);
         }
 
@@ -32,12 +44,17 @@ public abstract class PlantBedUtility implements SimpleList {
     }
 
     //shortest variant
-    public static <T extends Plant> Map<PlantColor, SimpleList<? extends T>>
-    splitBedByColor2(PlantBed<? extends T> plantBed) {
+    // T akzeptiert alle Kindsklassen von Plant
+    public static <T extends Plant>
+        // ? akzeptiert alle Kindsklassen von T
+        Map<PlantColor, SimpleList<? extends T>>
+            // ? akzeptiert alle Kindsklassen von T
+            splitBedByColor2(PlantBed<? extends T> plantBed) {
+
         Map<PlantColor, SimpleList<? extends T>> result = new HashMap<>();
-        /* iterate the enum values */
+        // iterieren der Enum-Farben
         for (PlantColor color : PlantColor.values()) {
-            /* get all plants of the current color */
+            // alle Pflanzen mit der akutellen Farbe
             result.put(color, plantBed.getPlantsByColor(color));
         }
         return result;

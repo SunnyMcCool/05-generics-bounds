@@ -10,10 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * @author Peter Kurfer
- * Created on 11/2/17.
- */
 class PlantBedTests {
 
     private PlantBed<Flower> flowerBed;
@@ -52,18 +48,18 @@ class PlantBedTests {
 
     @Test
     void testGetPlantsByColorYellow() {
-        SimpleList<Flower> flowers = flowerBed.getPlantsByColor(PlantColor.YELLOW);
-        assertEquals(3, flowers.size());
-        for(Flower f : flowers) {
+        SimpleList<Flower> flowerList = flowerBed.getPlantsByColor(PlantColor.YELLOW);
+        assertEquals(3, flowerList.size());
+        for(Flower f : flowerList) {
             assertEquals(PlantColor.YELLOW, f.getColor());
         }
     }
 
     @Test
     void testGetPlantsByColorRed() {
-        SimpleList<Flower> flowers = flowerBed.getPlantsByColor(PlantColor.RED);
-        assertEquals(2, flowers.size());
-        for(Flower f : flowers) {
+        SimpleList<Flower> flowerList = flowerBed.getPlantsByColor(PlantColor.RED);
+        assertEquals(2, flowerList.size());
+        for(Flower f : flowerList) {
             assertEquals(PlantColor.RED, f.getColor());
         }
     }
