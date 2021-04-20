@@ -50,6 +50,7 @@ class PlantBedTests {
     void testGetPlantsByColorYellow() {
         SimpleList<Flower> flowerList = flowerBed.getPlantsByColor(PlantColor.YELLOW);
         assertEquals(3, flowerList.size());
+        // Liste testen, ob wirklich alle Blumen gelb
         for(Flower f : flowerList) {
             assertEquals(PlantColor.YELLOW, f.getColor());
         }

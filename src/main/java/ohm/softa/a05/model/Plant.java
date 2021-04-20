@@ -57,10 +57,12 @@ public abstract class Plant implements Comparable<Plant> {
 
         // EqualsBuilder vergleicht alle Eigenschaften miteinander nach Gleichheit
         return new EqualsBuilder()
+                // if height == plant.height && ...
                 .append(getHeight(), plant.getHeight())
                 .append(getFamily(), plant.getFamily())
                 .append(getName(), plant.getName())
                 .append(getColor(), plant.getColor())
+                // returns true if fields are equal
                 .isEquals();
     }
 
@@ -95,7 +97,7 @@ public abstract class Plant implements Comparable<Plant> {
     @Override
     public int compareTo(Plant plant) {
 
-        return Double.compare(this.height, plant.height);
+        return Double.compare(this.getHeight(), plant.getHeight());
     }
 
 

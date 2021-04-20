@@ -67,8 +67,11 @@ public interface SimpleList<T> extends Iterable<T> {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	// <? super T> = erlaubt alle Elternklasse von T
+	// <? super T> = erlaubt alle Elternklassen von T
 	// <? extends R> = erlaubt alle Kindsklassen von R
+
+	// R sei double -> short
+	// T sei integer -> number;
 	default <R> SimpleList<R> map(Function<? super T, ? extends R> transform) {
 		SimpleList<R> result;
 		try {

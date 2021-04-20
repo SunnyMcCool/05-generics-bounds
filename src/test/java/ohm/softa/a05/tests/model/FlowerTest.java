@@ -75,7 +75,8 @@ class FlowerTest {
         // Liste sortieren nach Höhe
         flowerList.sort(Plant::compareTo);
 
-        // Liste sortieren nach Höhe
+        // Test, ob korrekt sortiert wurde
+        // aktuelle Höhe mit letzter verglichen
         double lastHeight = 0.0;
         for(Plant f : flowerList){
             assertTrue(f.getHeight() > lastHeight);

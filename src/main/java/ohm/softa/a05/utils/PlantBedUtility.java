@@ -13,7 +13,7 @@ import java.util.Map;
  // Metal und Pandabären
 
 // Warum abstrakt und privat?
-public abstract class PlantBedUtility implements SimpleList {
+public abstract class PlantBedUtility {
 
     private PlantBedUtility(){
 
